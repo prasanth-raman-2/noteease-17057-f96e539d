@@ -1,19 +1,17 @@
 import React from 'react';
-import { Box, Flex, ChakraProvider, ThemeConfig } from '@chakra-ui/react';
-import { Theme } from '@chakra-ui/theme';
+import { Box, Flex, ChakraProvider } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
 import { TopBar } from './TopBar';
 import { Sidebar } from './Sidebar';
 import { NoteEditor } from './NoteEditor';
 
-const themeConfig: ThemeConfig = {
-  initialColorMode: 'light',
-  useSystemColorMode: false,
-};
-
-const theme: Theme = {
-  config: themeConfig,
+const theme = extendTheme({
+  config: {
+    initialColorMode: 'light',
+    useSystemColorMode: false,
+  },
   colors: {
-    primary: {
+    brandPrimary: {
       50: '#E3F2FD',
       100: '#BBDEFB',
       200: '#90CAF9',
@@ -25,7 +23,7 @@ const theme: Theme = {
       800: '#1565C0',
       900: '#0D47A1',
     },
-    secondary: {
+    brandSecondary: {
       50: '#F5F7FA',
       100: '#E4E7EB',
       200: '#CBD2D9',
@@ -37,7 +35,7 @@ const theme: Theme = {
       800: '#323F4B',
       900: '#1F2933',
     },
-    accent: {
+    brandAccent: {
       50: '#FFF9E6',
       100: '#FFF3CC',
       200: '#FFE799',
@@ -53,15 +51,15 @@ const theme: Theme = {
   styles: {
     global: {
       body: {
-        bg: 'secondary.50',
+        bg: 'brandSecondary.50',
       },
     },
   },
-};
+});
 
 export const NoteEase: React.FC = () => {
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider resetCSS theme={theme}>
       <Box h="100vh" overflow="hidden">
         <Flex direction="column" h="full">
           <TopBar />
