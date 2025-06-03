@@ -1,12 +1,14 @@
 import React from 'react';
 import { Box, Flex, ChakraProvider } from '@chakra-ui/react';
-import { extendTheme } from '@chakra-ui/theme';
+import { theme as baseTheme } from '@chakra-ui/theme';
 import { TopBar } from './TopBar';
 import { Sidebar } from './Sidebar';
 import { NoteEditor } from './NoteEditor';
 
-const theme = extendTheme({
+const theme = {
+  ...baseTheme,
   colors: {
+    ...baseTheme.colors,
     primary: {
       500: '#4A90E2',
     },
@@ -18,13 +20,14 @@ const theme = extendTheme({
     },
   },
   styles: {
+    ...baseTheme.styles,
     global: {
       body: {
         bg: 'secondary.500',
       },
     },
   },
-});
+};
 
 export const NoteEase: React.FC = () => {
   return (
