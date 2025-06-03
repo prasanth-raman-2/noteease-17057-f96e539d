@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import {
   Box,
   Input,
@@ -81,7 +81,7 @@ export const NoteEditor: React.FC = () => {
         <Stack direction="row" justify="space-between">
           <Input
             value={title}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
             placeholder="Note title"
             size="lg"
             fontWeight="bold"
