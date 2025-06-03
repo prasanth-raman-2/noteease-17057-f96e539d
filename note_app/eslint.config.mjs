@@ -1,4 +1,3 @@
-// eslint.config.mjs
 import typescript from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 
@@ -8,14 +7,19 @@ export default [
     languageOptions: {
       parser: tsParser,
       globals: {
-        React: 'readable'  // Add this line to define React as a global
+        React: 'readable',
+        HTMLInputElement: 'readable',
+        HTMLElement: 'readable',
+        Node: 'readable',
+        Document: 'readable',
+        Window: 'readable'
       }
     },
     plugins: {
       '@typescript-eslint': typescript,
     },
     rules: {
-      "no-undef": "error",
+      "no-undef": "off", // Turn off no-undef as TypeScript handles this
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "warn",
     },
