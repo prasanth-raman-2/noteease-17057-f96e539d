@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Flex, ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { Box, Flex, ChakraProvider } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/theme';
 import { TopBar } from './TopBar';
 import { Sidebar } from './Sidebar';
 import { NoteEditor } from './NoteEditor';
