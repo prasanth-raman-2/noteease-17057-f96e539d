@@ -3,17 +3,13 @@ import {
   Box,
   VStack,
   Text,
-  useColorModeValue,
   Tag,
 } from '@chakra-ui/react';
 import { useNoteStore } from '../store/noteStore';
 
 export const Sidebar: React.FC = () => {
   const { notes, selectedNote, setSelectedNote, searchQuery, categories } = useNoteStore();
-  const bgColor = useColorModeValue('gray.50', 'gray.900');
-  const borderColor = useColorModeValue('gray.200', 'gray.700');
-  const hoverBgColor = useColorModeValue('gray.100', 'gray.700');
-
+  
   const filteredNotes = notes.filter((note) =>
     note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     note.content.toLowerCase().includes(searchQuery.toLowerCase())
@@ -28,9 +24,9 @@ export const Sidebar: React.FC = () => {
     <Box
       w="300px"
       h="100%"
-      bg={bgColor}
+      bg="gray.50"
       borderRight="1px"
-      borderColor={borderColor}
+      borderColor="gray.200"
       overflowY="auto"
     >
       <VStack spacing={0} align="stretch">
@@ -39,11 +35,11 @@ export const Sidebar: React.FC = () => {
             key={note.id}
             p={4}
             cursor="pointer"
-            bg={selectedNote?.id === note.id ? hoverBgColor : 'transparent'}
-            _hover={{ bg: hoverBgColor }}
+            bg={selectedNote?.id === note.id ? 'gray.100' : 'transparent'}
+            _hover={{ bg: 'gray.100' }}
             onClick={() => setSelectedNote(note)}
             borderBottom="1px"
-            borderColor={borderColor}
+            borderColor="gray.200"
           >
             <Text fontWeight="medium" mb={2} noOfLines={1}>
               {note.title}
