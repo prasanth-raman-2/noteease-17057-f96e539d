@@ -4,8 +4,8 @@ import {
   Input,
   Button,
   Flex,
+  Icon,
 } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
 import { FiPlus } from 'react-icons/fi';
 import { useNoteStore } from '../store/noteStore';
 
@@ -37,12 +37,12 @@ export const TopBar: React.FC = () => {
           _focus={{ borderColor: '#4A90E2', boxShadow: '0 0 0 1px #4A90E2' }}
         />
         <Button
-          leftIcon={<FiPlus />}
           colorScheme="blue"
           bg="#4A90E2"
           onClick={handleCreateNote}
           _hover={{ bg: '#357ABD' }}
         >
+          <Icon as={FiPlus} mr={2} />
           Create Note
         </Button>
       </Flex>

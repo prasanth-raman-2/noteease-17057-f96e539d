@@ -1,9 +1,9 @@
 import React from 'react';
 import {
   Box,
-  VStack,
+  Stack,
   Text,
-  Tag,
+  Badge,
 } from '@chakra-ui/react';
 import { useNoteStore } from '../store/noteStore';
 
@@ -29,7 +29,7 @@ export const Sidebar: React.FC = () => {
       borderColor="gray.200"
       overflowY="auto"
     >
-      <VStack spacing={0} align="stretch">
+      <Stack spacing={0} align="stretch">
         {filteredNotes.map((note) => (
           <Box
             key={note.id}
@@ -41,20 +41,32 @@ export const Sidebar: React.FC = () => {
             borderBottom="1px"
             borderColor="gray.200"
           >
-            <Text fontWeight="medium" mb={2} noOfLines={1}>
+            <Text
+              fontWeight="medium"
+              mb={2}
+              isTruncated
+            >
               {note.title}
             </Text>
-            <Text fontSize="sm" color="gray.600" noOfLines={2}>
+            <Text
+              fontSize="sm"
+              color="gray.600"
+              isTruncated
+            >
               {note.content}
             </Text>
             {note.category && (
-              <Tag size="sm" mt={2} colorScheme="blue">
+              <Badge
+                mt={2}
+                colorScheme="blue"
+                variant="subtle"
+              >
                 {getCategoryName(note.category)}
-              </Tag>
+              </Badge>
             )}
           </Box>
         ))}
-      </VStack>
+      </Stack>
     </Box>
   );
 };
