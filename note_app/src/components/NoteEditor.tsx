@@ -5,7 +5,6 @@ import {
   Button,
   VStack,
   HStack,
-  useColorModeValue,
   Select,
 } from '@chakra-ui/react';
 import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
@@ -17,9 +16,6 @@ export const NoteEditor: React.FC = () => {
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-
-  const bgColor = useColorModeValue('white', 'gray.800');
-  const borderColor = useColorModeValue('gray.200', 'gray.700');
 
   useEffect(() => {
     if (selectedNote) {
@@ -74,9 +70,9 @@ export const NoteEditor: React.FC = () => {
     <Box
       flex={1}
       p={6}
-      bg={bgColor}
+      bg="white"
       borderLeft="1px"
-      borderColor={borderColor}
+      borderColor="gray.200"
     >
       <VStack spacing={4} align="stretch">
         <HStack justify="space-between">
@@ -102,7 +98,7 @@ export const NoteEditor: React.FC = () => {
         </HStack>
         <Box
           borderWidth={1}
-          borderColor={borderColor}
+          borderColor="gray.200"
           borderRadius="md"
           p={4}
           minH="400px"
