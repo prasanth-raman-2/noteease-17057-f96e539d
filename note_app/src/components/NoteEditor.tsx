@@ -3,12 +3,15 @@ import {
   Box,
   Input,
   Button,
-  VStack,
-  HStack,
-  Select,
+  Stack,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Icon,
 } from '@chakra-ui/react';
 import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
-import { FiTrash2, FiSave } from 'react-icons/fi';
+import { FiTrash2, FiSave, FiChevronDown } from 'react-icons/fi';
 import { useNoteStore } from '../store/noteStore';
 
 export const NoteEditor: React.FC = () => {
@@ -74,28 +77,35 @@ export const NoteEditor: React.FC = () => {
       borderLeft="1px"
       borderColor="gray.200"
     >
-      <VStack spacing={4} align="stretch">
-        <HStack justify="space-between">
+      <Stack direction="column" spacing={4}>
+        <Stack direction="row" justify="space-between">
           <Input
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
             placeholder="Note title"
             size="lg"
             fontWeight="bold"
           />
-          <Select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            placeholder="Select category"
-            maxW="200px"
-          >
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
-              </option>
-            ))}
-          </Select>
-        </HStack>
+          <Menu>
+            <MenuButton
+              as={Button}
+              rightIcon={<Icon as={FiChevronDown} />}
+              maxW="200px"
+            >
+              {category ? categories.find(cat => cat.id === category)?.name : 'Select category'}
+            </MenuButton>
+            <MenuList>
+              {categories.map((cat) => (
+                <MenuItem
+                  key={cat.id}
+                  onClick={() => setCategory(cat.id)}
+                >
+                  {cat.name}
+                </MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
+        </Stack>
         <Box
           borderWidth={1}
           borderColor="gray.200"
@@ -109,26 +119,26 @@ export const NoteEditor: React.FC = () => {
             handleKeyCommand={handleKeyCommand}
           />
         </Box>
-        <HStack spacing={4} justify="flex-end">
+        <Stack direction="row" justify="flex-end">
           <Button
-            leftIcon={<FiTrash2 />}
             colorScheme="red"
             variant="outline"
             onClick={handleDelete}
           >
+            <Icon as={FiTrash2} mr={2} />
             Delete
           </Button>
           <Button
-            leftIcon={<FiSave />}
             colorScheme="blue"
             onClick={handleSave}
             bg="#4A90E2"
             _hover={{ bg: '#357ABD' }}
           >
+            <Icon as={FiSave} mr={2} />
             Save
           </Button>
-        </HStack>
-      </VStack>
+        </Stack>
+      </Stack>
     </Box>
   );
 };
