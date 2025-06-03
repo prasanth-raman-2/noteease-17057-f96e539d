@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Box,
-  Stack,
+  VStack,
   Text,
   Badge,
 } from '@chakra-ui/react';
@@ -29,7 +29,7 @@ export const Sidebar: React.FC = () => {
       borderColor="gray.200"
       overflowY="auto"
     >
-      <Stack spacing={0} align="stretch">
+      <VStack align="stretch" py={0}>
         {filteredNotes.map((note) => (
           <Box
             key={note.id}
@@ -44,14 +44,14 @@ export const Sidebar: React.FC = () => {
             <Text
               fontWeight="medium"
               mb={2}
-              isTruncated
+              noOfLines={1}
             >
               {note.title}
             </Text>
             <Text
               fontSize="sm"
               color="gray.600"
-              isTruncated
+              noOfLines={2}
             >
               {note.content}
             </Text>
@@ -66,7 +66,7 @@ export const Sidebar: React.FC = () => {
             )}
           </Box>
         ))}
-      </Stack>
+      </VStack>
     </Box>
   );
 };
